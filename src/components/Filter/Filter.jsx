@@ -1,7 +1,16 @@
+import { useDispatch, useSelector } from 'react-redux';
+import { updateFilter } from '../../redux/filterSlice';
 import style from './Filter.module.css';
 import PropTypes from 'prop-types';
 
-export const Filter = ({ handleChangeFilter, filter }) => {
+export const Filter = () => {
+  const filter = useSelector(state => state.filter);
+  const dispatch = useDispatch();
+
+  const handleChangeFilter = event => {
+    dispatch(updateFilter(event.target.value));
+  };
+
   return (
     <label>
       <p className={style.find}>Find contacts by name</p>
