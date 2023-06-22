@@ -7,6 +7,7 @@ const initialState = {
     { id: 'id-3', name: 'Eden Clements', number: '645-17-79' },
     { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
   ],
+  filter: '',
 };
 
 const contactSlice = createSlice({
@@ -14,7 +15,19 @@ const contactSlice = createSlice({
   initialState,
   reducers: {
     addContact(state, action) {
-      state.contacts.push(action.payload);
+      const { name } = action.payload;
+
+      const existingContact = state.contacts.find(
+        contact => contact.name === name
+      );
+
+      if (existingContact) {
+        alert(`This contact ${existingContact.name} already exists.`);
+        return;
+      } else {
+        state.contacts.push(action.payload);
+      }
+      
     },
     deleteContact(state, action) {
       state.contacts = state.contacts.filter(
