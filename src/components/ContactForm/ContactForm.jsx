@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import style from './ContactForm.module.css';
-import PropTypes from 'prop-types';
 import { addContact } from '../../redux/contactSlice';
 
 const ContactForm = () => {
@@ -60,8 +59,5 @@ const ContactForm = () => {
   );
 };
 
-ContactForm.propTypes = {
-  addContact: PropTypes.func.isRequired,
-};
 
 export default ContactForm;
