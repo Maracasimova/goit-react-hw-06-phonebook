@@ -1,36 +1,31 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { nanoid } from 'nanoid';
+
+const initialState = {
+  contacts: [
+    { id: 'id-1', name: 'Rosie Simpson', number: '459-12-56' },
+    { id: 'id-2', name: 'Hermione Kline', number: '443-89-12' },
+    { id: 'id-3', name: 'Eden Clements', number: '645-17-79' },
+    { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
+  ],
+};
 
 const contactSlice = createSlice({
   name: 'contacts',
-  initialState: {
-    contacts: [],
-    filter: '',
-  },
+  initialState,
   reducers: {
-    addContact: (state, action) => {
-      const { name } = action.payload;
-      const existingContact = state.contacts.find(
-        contact => contact.name === name
+    addContact(state, action) {
+      state.contacts.push(action.payload);
+    },
+    deleteContact(state, action) {
+      state.contacts = state.contacts.filter(
+        contact => contact.id !== action.payload
       );
-
-      if (existingContact) {
-        alert(`This contact ${existingContact.name} already exists.`);
-        return;
-      }
-
-      state.contacts.push({ ...action.payload, id: nanoid() });
     },
-    deleteContact: (state, action) => {
-      const id = action.payload;
-      state.contacts = state.contacts.filter(contact => contact.id !== id);
-    },
-    updateFilter: (state, action) => {
+    updateFilter(state, action) {
       state.filter = action.payload;
     },
   },
 });
 
 export const { addContact, deleteContact, updateFilter } = contactSlice.actions;
-
 export default contactSlice.reducer;
