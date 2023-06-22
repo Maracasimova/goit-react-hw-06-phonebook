@@ -1,7 +1,6 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { deleteContact } from '../../redux/contactSlice';
 import { ContactUser } from 'components/ContactUser/ContactUser';
-import PropTypes from 'prop-types';
 
 export const ContactList = () => {
   const contacts = useSelector(state => state.contacts);
@@ -29,15 +28,4 @@ export const ContactList = () => {
       ))}
     </ul>
   );
-};
-
-ContactList.propTypes = {
-  contactSearch: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.string.isRequired,
-      name: PropTypes.string.isRequired,
-      number: PropTypes.string.isRequired,
-    })
-  ).isRequired,
-  deleteContact: PropTypes.func.isRequired,
 };
