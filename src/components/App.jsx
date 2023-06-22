@@ -1,6 +1,6 @@
 import React from 'react';
 import ContactForm from './ContactForm/ContactForm';
-import Filter from './Filter/Filter';
+import { Filter } from './Filter/Filter';
 import { ContactList } from './ContactList/ContactList';
 import style from './App.module.css';
 
